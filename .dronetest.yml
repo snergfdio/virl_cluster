@@ -30,7 +30,6 @@ steps:
       -pull_request
 - name: vpppushonly
   image: index.docker.io/snergster/vpp-ubuntu18
-  privileged: true
   commands:
     - echo 'push only'
   when:
