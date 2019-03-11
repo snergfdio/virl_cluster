@@ -1,0 +1,38 @@
+---
+kind: pipeline
+name: ubuntu18prtest
+
+platform:
+  os: linux
+  arch: amd64
+
+# instance:
+#   include:
+#     - drone.fdiopoc.net
+#     - 5346a318.ngrok.io
+
+steps:
+- name: pronly
+  image: index.docker.io/snergster/vpp-ubuntu18
+  commands:
+    - echo 'pr only'
+  when:
+    event:
+      -push
+      -pull_request
+- name: prpush
+  image: index.docker.io/snergster/vpp-ubuntu18
+  commands:
+    - echo 'pr and push'
+  when:
+    event:
+      -push
+      -pull_request
+- name: vpppushonly
+  image: index.docker.io/snergster/vpp-ubuntu18
+  privileged: true
+  commands:
+    - echo 'push only'
+  when:
+    event:
+    - push
