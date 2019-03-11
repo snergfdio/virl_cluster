@@ -18,16 +18,15 @@ steps:
     - echo 'pr only'
   when:
     event:
-      -push
-      -pull_request
+      - pull_request
 - name: prpush
   image: index.docker.io/snergster/vpp-ubuntu18
   commands:
     - echo 'pr and push'
   when:
     event:
-      -push
-      -pull_request
+      - push
+      - pull_request
 - name: vpppushonly
   image: index.docker.io/snergster/vpp-ubuntu18
   commands:
